@@ -15,8 +15,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<TestWebConfig>();
-
+builder.Services.Configure<Proxy>(x => builder.Configuration.GetSection("Proxy").Bind(x));
 builder.Configuration.AddSxrConfiguration("web.config");
+//builder.Services.Configure<Proxy>(builder.Configuration.GetSection("test"));
 
 
 builder.Services.Configure<WebConfig>(x => builder.Configuration.Bind(x));

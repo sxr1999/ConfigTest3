@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ConfigurationApplicationMVC.Models;
+using Microsoft.Extensions.Options;
 
 namespace ConfigurationApplicationMVC.Controllers;
 
@@ -8,11 +9,13 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly TestWebConfig _config;
+    private readonly IOptionsSnapshot<Proxy> _options;
 
-    public HomeController(ILogger<HomeController> logger,TestWebConfig config)
+    public HomeController(ILogger<HomeController> logger,TestWebConfig config,IOptionsSnapshot<Proxy> options)
     {
         _logger = logger;
         _config = config;
+        _options = options;
     }
 
     public IActionResult Index()
